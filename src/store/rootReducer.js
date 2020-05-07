@@ -1,8 +1,29 @@
 import {combineReducers} from 'redux';
-import todoReducer from './ducks/Todo';
+import {connectRouter} from 'connected-react-router';
 
-const rootReducer = combineReducers({
-  todos: todoReducer
-})
+// reducers
+import todoReducer from './ducks/Todo';
+import toastReducer from './ducks/Toast';
+import raceReducer from './ducks/Race';
+import authReducer from './ducks/Auth';
+import modalityReducer from './ducks/Modality';
+import sponsorReducer from './ducks/Sponsor';
+import playerReducer from './ducks/Player';
+import registrationReducer from './ducks/Registration';
+import modalReducer from './ducks/ModalConfirmation';
+
+// rootReducer
+const rootReducer= (history) => combineReducers({
+  router: connectRouter(history),
+  toast: toastReducer,
+  auth: authReducer,
+  todos: todoReducer,
+  races: raceReducer,
+  modalities: modalityReducer,
+  modal: modalReducer,
+  sponsors: sponsorReducer,
+  players: playerReducer,
+  registrations: registrationReducer
+});
 
 export default rootReducer;

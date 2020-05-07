@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { Provider } from 'react-redux';
+import {ConnectedRouter} from 'connected-react-router';
+import {history} from './store/index';
 import App from './App';
 import store from './store';
-import { Provider } from 'react-redux';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.min.css";
+import './index.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
       <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById("root")
 );
