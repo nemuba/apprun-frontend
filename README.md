@@ -1,7 +1,11 @@
-# AARCA - FRONTEND
 
-Esse é o projeto frontend da aplicação AARCA, que consome uma API desenvolvida em Ruby on Rails.
-Este projeto foi desenvolvido com as skills:
+<h1 align="center">
+  APPRUN - FRONTEND
+</h1>
+
+### Esse é o projeto frontend da aplicação APPRUN, que consome uma [API](https://github.com/nemuba/apprun-backend) desenvolvida em Ruby on Rails.
+
+### Este projeto foi desenvolvido com as skills:
 
 * [React](https://reactjs.org/)
 * [React-Bootstrap](https://react-bootstrap.github.io/)
@@ -16,5 +20,5 @@ Este projeto foi desenvolvido com as skills:
 Projeto desenvolvido com muito aprendizado, confesso que foi muito gratificante ter chegado até o fim desse projeto onde passei por todos os desafios tanto no back como no frontend da apliacação.
 
 ### Autor: Alef Ojeda de Oliveira
-### Github: [nemuba](https://github.com/nemuba)
-### Linkedin: [alef-ojeda](https://www.linkedin.com/in/alef-ojeda/)
+### Facebook: https://www.facebook.com/AlefOjedaOliveira/
+### Linkedin: https://www.linkedin.com/in/alef-ojeda
