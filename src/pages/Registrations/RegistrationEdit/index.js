@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Row, Col, Card, FormGroup, FormLabel, Button } from "react-bootstrap";
 import { Form } from "@unform/web";
 import { Link, useParams } from "react-router-dom";
@@ -13,6 +13,7 @@ import Select from "./../../../components/commom/Select";
 import MainLayout from "./../../../components/MainLayout";
 
 const RegistrationEdit = () => {
+  const [disabled, setDisabled] = useState(false);
   const options_modalities = useSelector((state) => state.modalities);
   const options_players = useSelector((state) => state.players);
   const options_races = useSelector((state) => state.races);
@@ -31,6 +32,7 @@ const RegistrationEdit = () => {
 
   const handleSubmit = async (data) => {
     try {
+      setDisabled(true);
       formRef.current.setErrors({});
 
       const schema = Yup.object().shape({
@@ -45,6 +47,10 @@ const RegistrationEdit = () => {
 
       dispatch(updateRegistrationAsync(id,data));
 
+      setTimeout(() => {
+        setDisabled(false);
+      }, 500);
+
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
@@ -54,6 +60,7 @@ const RegistrationEdit = () => {
         formRef.current.setErrors(validationErrors);
       }
       toast.warn("Preencha todos os campos");
+      setDisabled(false);
     }
   };
 
@@ -124,8 +131,9 @@ const RegistrationEdit = () => {
                     variant="primary"
                     type="submit"
                     className="float-right"
+                    disabled={disabled}
                   >
-                    Atualizar
+                    {disabled ? 'Atualizando ...' : 'Atualizar'}
                   </Button>
                 </FormGroup>
               </Form>

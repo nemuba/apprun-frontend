@@ -61,9 +61,8 @@ const ModalityEdit = () => {
         formRef.current.setErrors(validationErrors);
       }
       toast.warn("Preencha todos os campos");
-      setTimeout(() => {
-        setDisabled(false);
-      }, 500);
+      setDisabled(false);
+
     }
   };
 

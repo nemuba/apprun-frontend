@@ -66,7 +66,7 @@ const Races = (props) => {
                       ))
                     ) : (
                       <tr className="font-weight-bold">
-                        <td colSpan="6" align="center">
+                        <td colSpan="7" align="center">
                           Nenhuma corrida cadastrada.{" "}
                           <Link to="/race/new">Cadastrar</Link>
                         </td>

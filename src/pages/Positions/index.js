@@ -44,7 +44,7 @@ const Positions = () =>{
                   <tr>
                     <th>#</th>
                     <th className="text-center">Descrição</th>
-                    <th className="text-center">Valor</th>
+                    <th className="text-center">Score</th>
                     <th className="text-center">Opções</th>
                   </tr>
                 </thead>

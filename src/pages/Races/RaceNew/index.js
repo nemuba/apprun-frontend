@@ -1,4 +1,4 @@
-import React, {useRef, useEffect } from 'react';
+import React, {useRef, useEffect, useState } from 'react';
 import { Row, Col, Card, FormGroup, FormLabel, Button } from 'react-bootstrap';
 import {Form} from '@unform/web';
 import {Link} from 'react-router-dom';
@@ -13,7 +13,7 @@ import {addRaceAsync} from './../actions';
 import MainLayout from './../../../components/MainLayout';
 
 const RaceNew = () => {
-
+  const [disabled, setDisabled] = useState(false);
   const modalities = useSelector(state => state.modalities);
   const sponsors = useSelector(state => state.sponsors);
   const dispatch = useDispatch();
@@ -29,6 +29,7 @@ const RaceNew = () => {
 
   const handleSubmit = async (data,{reset}) =>{
     try {
+      setDisabled(true);
       formRef.current.setErrors({});
 
       const schema = Yup.object().shape({
@@ -45,6 +46,10 @@ const RaceNew = () => {
       dispatch(addRaceAsync(data));
       reset();
 
+      setTimeout(() => {
+        setDisabled(false);
+      }, 500);
+
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
@@ -54,6 +59,7 @@ const RaceNew = () => {
         formRef.current.setErrors(validationErrors);
       }
       toast.warn("Preencha todos os campos");
+      setDisabled(false);
     }
   }
 
@@ -113,8 +119,9 @@ const RaceNew = () => {
                     variant="primary"
                     type="submit"
                     className="float-right"
+                    disabled={disabled}
                   >
-                    Cadastrar
+                    {disabled ? 'Cadastrando ...' :'Cadastrar'}
                   </Button>
                 </FormGroup>
               </Form>

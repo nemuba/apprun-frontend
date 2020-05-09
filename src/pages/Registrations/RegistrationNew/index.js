@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Row, Col, Card, FormGroup, FormLabel, Button } from "react-bootstrap";
 import { Form } from "@unform/web";
 import { Link } from "react-router-dom";
@@ -13,6 +13,7 @@ import Select from "./../../../components/commom/Select";
 import MainLayout from "./../../../components/MainLayout";
 
 const RegistrationNew = () => {
+  const [disabled, setDisabled] = useState(false);
   const options_modalities = useSelector((state) => state.modalities);
   const options_players = useSelector((state) => state.players);
   const options_races  = useSelector((state) => state.races);
@@ -29,6 +30,7 @@ const RegistrationNew = () => {
 
   const handleSubmit = async (data, { reset }) => {
     try {
+      setDisabled(true);
       formRef.current.setErrors({});
 
       const schema = Yup.object().shape({
@@ -44,6 +46,10 @@ const RegistrationNew = () => {
       dispatch(addRegistrationAsync(data));
       reset();
 
+      setTimeout(() => {
+        setDisabled(false);
+      }, 500);
+
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
@@ -53,6 +59,7 @@ const RegistrationNew = () => {
         formRef.current.setErrors(validationErrors);
       }
       toast.warn("Preencha todos os campos");
+      setDisabled(false);
     }
   };
 
@@ -109,8 +116,9 @@ const RegistrationNew = () => {
                     variant="primary"
                     type="submit"
                     className="float-right"
+                    disabled={disabled}
                   >
-                    Cadastrar
+                    {disabled ? 'Cadastrando ...' : 'Cadastrar'}
                   </Button>
                 </FormGroup>
               </Form>
