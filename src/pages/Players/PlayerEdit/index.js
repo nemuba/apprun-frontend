@@ -10,7 +10,7 @@ import Input from "./../../../components/commom/Input";
 import Select from "./../../../components/commom/Select";
 import MainLayout from "./../../../components/MainLayout";
 
-const PlayerNew = () => {
+const PlayerEdit = () => {
   const dispatch = useDispatch();
   const formRef = useRef();
   const {id} = useParams();
@@ -105,4 +105,4 @@ const PlayerNew = () => {
   );
 };
 
-export default PlayerNew;
+export default PlayerEdit;

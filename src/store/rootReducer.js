@@ -11,6 +11,7 @@ import sponsorReducer from './ducks/Sponsor';
 import playerReducer from './ducks/Player';
 import registrationReducer from './ducks/Registration';
 import modalReducer from './ducks/ModalConfirmation';
+import positionReducer from './ducks/Position';
 
 // rootReducer
 const rootReducer= (history) => combineReducers({
@@ -23,7 +24,8 @@ const rootReducer= (history) => combineReducers({
   modal: modalReducer,
   sponsors: sponsorReducer,
   players: playerReducer,
-  registrations: registrationReducer
+  registrations: registrationReducer,
+  positions: positionReducer
 });
 
 export default rootReducer;

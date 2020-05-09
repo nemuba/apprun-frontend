@@ -63,6 +63,16 @@ const Header = (props) =>{
             Modalidades
           </NavLink>
           <NavLink
+            to="/positions"
+            className={
+              location.pathname === "/positions"
+                ? "nav-link active"
+                : "nav-link"
+            }
+          >
+            Posições
+          </NavLink>
+          <NavLink
             to="/sponsors"
             className={
               location.pathname === "/sponsors" ? "nav-link active" : "nav-link"

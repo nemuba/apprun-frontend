@@ -20,6 +20,9 @@ import SponsorEdit from "./pages/Sponsors/SponsorEdit";
 import Registrations from "./pages/Registrations";
 import RegistrationNew from "./pages/Registrations/RegistrationNew";
 import RegistrationEdit from "./pages/Registrations/RegistrationEdit";
+import Positions from './pages/Positions';
+import PositionNew from './pages/Positions/PositionNew';
+import PositionEdit from './pages/Positions/PositionEdit';
 import SignIn from "./pages/Auth/SignIn";
 import Todo from './pages/Todo';
 import UserInfo from './pages/UserInfo';
@@ -63,6 +66,9 @@ const App = (props) => {
         <PrivateRoute exact path="/registrations" component={Registrations} />
         <PrivateRoute exact path="/registration/new" component={RegistrationNew} />
         <PrivateRoute exact path="/registration/:id/edit" component={RegistrationEdit} />
+        <PrivateRoute exact path="/positions" component={Positions} />
+        <PrivateRoute exact path="/position/new" component={PositionNew} />
+        <PrivateRoute exact path="/position/:id/edit" component={PositionEdit} />
         <PrivateRoute exact path="/user" component={UserInfo} />
         <Route exact path="/login" component={SignIn} />
         <Route exact path="/todo" component={Todo} />
