@@ -14,6 +14,6 @@ export const loginAsyn = (form) =>{
         dispatch(push("/"));
         toast.success('Logado com sucesso !');
       })
-      .catch(()=> toast.warn("Não foi possivel efetuar login !"));
+      .catch(()=> toast.warn("Usuário e senha incorreto. Tente novamente !"));
   }
 }
