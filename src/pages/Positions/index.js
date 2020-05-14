@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import {Row, Col, Card, Table} from 'react-bootstrap';
-import {FaPlus} from 'react-icons/fa'
+import {FaPlus} from 'react-icons/fa';
+import Page from 'react-page-loading';
 import { useSelector, useDispatch } from 'react-redux';
 import {showModalConfirmation} from '../../store/ducks/ModalConfirmation';
 import { fetchPositionsAsync, deletePositionAsync } from './actions';
@@ -29,6 +30,7 @@ const Positions = () =>{
   return(
     <MainLayout>
       <ModalConfirmation handleDelete={handleDelete} />
+      <Page loader="bubble-spin" color="#343A40" size={8}>
       <Row>
         <Col>
           <Card className="mt-3">
@@ -75,6 +77,7 @@ const Positions = () =>{
           </Card>
         </Col>
       </Row>
+      </Page>
     </MainLayout>
   );
 }

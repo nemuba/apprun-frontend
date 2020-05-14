@@ -24,8 +24,8 @@ export const addRegistrationAsync = (form) =>{
       if(resp.status !== 226){
         toast.success("Cadastrado com sucesso");
       }else{
-        const msg = resp.data[0];
-        toast.warn(`${msg} . Tente novamente.`);
+        const msg = resp.data;
+        toast.warn(`${msg.race_id} . Tente novamente.`);
       }
     })
     .catch((error) => {

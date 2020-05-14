@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import { FaTrash, FaPen, FaEye } from 'react-icons/fa';
 
 const RegistrationItem = ({registration, handleShowModal}) => {
   return (
@@ -13,10 +14,16 @@ const RegistrationItem = ({registration, handleShowModal}) => {
       <td align="center">{registration.date_registration}</td>
       <td align="center">
         <Link
+          to={`/registration/${registration.id}`}
+          className="btn btn-info btn-sm mr-2"
+        >
+          <FaEye size={16} />
+        </Link>
+        <Link
           to={`/registration/${registration.id}/edit`}
           className="btn btn-success btn-sm mr-2"
         >
-          Editar
+          <FaPen size={16} />
         </Link>
         <Button
           variant="danger"
@@ -27,9 +34,8 @@ const RegistrationItem = ({registration, handleShowModal}) => {
               title: "Excluir Inscrição",
               message: "Deseja realmente excluir?",
             })
-          }
-        >
-          Excluir
+        }>
+          <FaTrash size={16} />
         </Button>
       </td>
     </tr>
