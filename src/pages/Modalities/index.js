@@ -3,7 +3,7 @@ import Page from "react-page-loading";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Card, Table } from "react-bootstrap";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaVenusMars } from "react-icons/fa";
 import {showModalConfirmation} from './../../store/ducks/ModalConfirmation';
 import { fetchModalitiesAsync, deleteModalitiesAsync } from "./actions";
 import MainLayout from "../../components/MainLayout";
@@ -34,7 +34,7 @@ const Modalities = () => {
         <Col>
           <Card className="mt-3">
             <Card.Header className="bg-dark text-white">
-              <h3 className="float-left">Modalidades</h3>
+              <h3 className="float-left">Modalidades <FaVenusMars className="ml-2" size={24}/></h3>
               <Link
                 to="/modality/new"
                 className="btn btn-outline-secondary btn-sm float-right"

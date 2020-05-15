@@ -10,7 +10,7 @@ import { FaEye } from 'react-icons/fa';
 const RegistrationInfo = () =>{
 
   const dispatch = useDispatch();
-  const registration = useSelector(state => state.registrations);
+  const registration = useSelector(state => state.registrations[0]);
   const {id} = useParams();
 
   useEffect(()=>{
@@ -28,14 +28,14 @@ const RegistrationInfo = () =>{
               </Card.Header>
               <Card.Body>
                 <FormGroup>
-                  <FormLabel>Local da corrida: {registration[0]?.race?.local}</FormLabel>
+                  <FormLabel>Local da corrida: {registration?.race?.local}</FormLabel>
                 </FormGroup>
                 <FormGroup>
-                  <FormLabel>Data da corrida: {registration[0]?.race?.date_race}</FormLabel>
+                  <FormLabel>Data da corrida: {registration?.race?.date_race}</FormLabel>
                 </FormGroup>
               </Card.Body>
               <Card.Footer>
-                <Link to={`/race/${registration[0]?.race?.id}`} className="btn btn-info btn-block">
+                <Link to={`/race/${registration?.race?.id}`} className="btn btn-info btn-block">
                   Visualizar <FaEye size={16}/>
                 </Link>
               </Card.Footer>
@@ -48,14 +48,14 @@ const RegistrationInfo = () =>{
               </Card.Header>
               <Card.Body>
                 <FormGroup>
-                  <FormLabel>Modalidade: {registration[0]?.modality?.genre}</FormLabel>
+                  <FormLabel>Modalidade: {registration?.modality?.genre}</FormLabel>
                 </FormGroup>
                 <FormGroup>
-                  <FormLabel>Numero de Remo: {`${registration[0]?.modality?.oar} remo(s)`}</FormLabel>
+                  <FormLabel>Numero de Remo: {`${registration?.modality?.oar} remo(s)`}</FormLabel>
                 </FormGroup>
               </Card.Body>
               <Card.Footer>
-                <Link to={`/modality/${registration[0]?.modality?.id}`} className="btn btn-info btn-block">
+                <Link to={`/modality/${registration?.modality?.id}`} className="btn btn-info btn-block">
                   Visualizar <FaEye size={16} />
                 </Link>
               </Card.Footer>
@@ -68,14 +68,14 @@ const RegistrationInfo = () =>{
               </Card.Header>
               <Card.Body>
                 <FormGroup>
-                  <FormLabel>Nome: {registration[0]?.player?.name}</FormLabel>
+                  <FormLabel>Nome: {registration?.player?.name}</FormLabel>
                 </FormGroup>
                 <FormGroup>
-                  <FormLabel>Idade: {registration[0]?.player?.age}</FormLabel>
+                  <FormLabel>Idade: {registration?.player?.age}</FormLabel>
                 </FormGroup>
               </Card.Body>
               <Card.Footer>
-                <Link to={`/player/${registration[0]?.player?.id}`} className="btn btn-info btn-block">
+                <Link to={`/player/${registration?.player?.id}`} className="btn btn-info btn-block">
                   Visualizar <FaEye size={16} />
                 </Link>
               </Card.Footer>
@@ -85,7 +85,7 @@ const RegistrationInfo = () =>{
         <Row>
           <Col className="mt-3" style={{marginBottom: '100px'}}>
             <Link to="/registrations" className="btn btn-danger btn-sm mr-2">Voltar</Link>
-            <Link to={`/registration/${registration[0]?.id}/edit`} className="btn btn-success btn-sm">Editar</Link>
+            <Link to={`/registration/${registration?.id}/edit`} className="btn btn-success btn-sm">Editar</Link>
           </Col>
         </Row>
       </Page>

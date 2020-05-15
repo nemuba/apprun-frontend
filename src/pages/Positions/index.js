@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import {Row, Col, Card, Table} from 'react-bootstrap';
-import {FaPlus} from 'react-icons/fa';
+import {FaPlus, FaTrophy} from 'react-icons/fa';
 import Page from 'react-page-loading';
 import { useSelector, useDispatch } from 'react-redux';
 import {showModalConfirmation} from '../../store/ducks/ModalConfirmation';
@@ -35,7 +35,7 @@ const Positions = () =>{
         <Col>
           <Card className="mt-3">
             <Card.Header className="bg-dark text-white">
-              <h3 className="float-left">Lista de Posições</h3>
+                <h3 className="float-left">Posições <FaTrophy className="ml-2" size={24} /></h3>
               <Link to="/position/new" className="btn btn-outline-secondary float-right">
                 <FaPlus size={24}/>
               </Link>

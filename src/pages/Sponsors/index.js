@@ -8,7 +8,7 @@ import {showModalConfirmation} from './../../store/ducks/ModalConfirmation';
 import SponsorItem from "../../components/Sponsor/SponsorItem";
 import MainLayout from "../../components/MainLayout";
 import ModalConfirmation from './../../components/commom/Modal';
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaUserTie } from "react-icons/fa";
 
 const Sponsors = () => {
   const sponsors = useSelector((state) => state.sponsors);
@@ -34,7 +34,7 @@ const Sponsors = () => {
           <Col>
             <Card className="mt-3">
               <Card.Header className="bg-dark text-white">
-                <h3 className="float-left">Patrocinadores</h3>
+                <h3 className="float-left">Patrocinadores <FaUserTie className="ml-2" size={24} /></h3>
                 <Link
                   to="/sponsor/new"
                   className="btn btn-outline-secondary btn-sm float-right"

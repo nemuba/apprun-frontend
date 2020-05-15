@@ -10,7 +10,7 @@ import MainLayout from './../../../components/MainLayout';
 const PlayerInfo = () => {
 
   const dispatch = useDispatch();
-  const player = useSelector(state => state.players);
+  const player = useSelector(state => state.players[0]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -28,17 +28,17 @@ const PlayerInfo = () => {
             </Card.Header>
               <Card.Body>
                 <FormGroup>
-                  <FormLabel>Nome: {player[0]?.name}</FormLabel>
+                  <FormLabel>Nome: {player?.name}</FormLabel>
                 </FormGroup>
                 <FormGroup>
-                  <FormLabel>Modalidade: {player[0]?.genre}</FormLabel>
+                  <FormLabel>Modalidade: {player?.genre}</FormLabel>
                 </FormGroup>
                 <FormGroup>
-                  <FormLabel>Idade: {player[0]?.age}</FormLabel>
+                  <FormLabel>Idade: {player?.age}</FormLabel>
                 </FormGroup>
               </Card.Body>
               <Card.Footer>
-                <Link to={`/player/${player[0]?.id}/edit`} className="btn btn-success btn-block">
+                <Link to={`/player/${player?.id}/edit`} className="btn btn-success btn-block">
                   Editar <FaPen size={16} />
                 </Link>
               </Card.Footer>
@@ -67,8 +67,8 @@ const PlayerInfo = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {player[0]?.registrations?.length ?
-                      (player[0].registrations.map((registration, index) => (
+                    {player?.registrations?.length ?
+                      (player.registrations.map((registration, index) => (
                         <tr key={index}>
                           <td>{registration.id}</td>
                           <td align="center">{registration.race?.local}</td>

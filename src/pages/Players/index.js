@@ -7,7 +7,7 @@ import { fetchPlayersAsync, deletePlayerAsync } from "./actions";
 import {showModalConfirmation} from './../../store/ducks/ModalConfirmation';
 import ModalConfirmation from './../../components/commom/Modal';
 import MainLayout from "../../components/MainLayout";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaUsers } from "react-icons/fa";
 import PlayerItem from "../../components/Player/PlayerItem";
 
 const Players = () => {
@@ -34,7 +34,7 @@ const Players = () => {
           <Col>
             <Card className="mt-3">
               <Card.Header className="bg-dark text-white">
-                <h3 className="float-left">Participantes</h3>
+                <h3 className="float-left">Participantes <FaUsers className="ml-2" size={24} /></h3>
                 <Link
                   to="/player/new"
                   className="btn btn-outline-secondary btn-sm float-right"

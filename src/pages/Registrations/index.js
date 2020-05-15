@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Page from "react-page-loading";
 import { Row, Col, Card, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import {FaPlus} from 'react-icons/fa';
+import {FaPlus, FaFileAlt} from 'react-icons/fa';
 import { useDispatch, useSelector } from "react-redux";
 import {fetchRegistrationsAsync, deleteRegistrationAsync} from './actions';
 import {showModalConfirmation} from './../../store/ducks/ModalConfirmation';
@@ -38,7 +38,7 @@ const Registrations = () => {
           <Col>
             <Card className="mt-3">
               <Card.Header className="bg-dark text-white">
-                <h3 className="float-left">Inscrições</h3>
+                <h3 className="float-left">Inscrições <FaFileAlt className="ml-2" size={24} /></h3>
                 <Link
                   to="/registration/new"
                   className="btn btn-outline-secondary float-right"

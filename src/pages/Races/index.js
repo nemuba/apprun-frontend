@@ -3,7 +3,7 @@ import { Row, Col, Card, Table } from "react-bootstrap";
 import Page from "react-page-loading";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaShip } from "react-icons/fa";
 import { fetchRacesAsync, deleteRaceAsync } from "./actions";
 import {showModalConfirmation} from './../../store/ducks/ModalConfirmation';
 import MainLayout from "../../components/MainLayout";
@@ -34,7 +34,7 @@ const Races = (props) => {
           <Col>
             <Card className="mt-3">
               <Card.Header className="bg-dark text-white">
-                <h3 className="float-left">Corridas</h3>
+                <h3 className="float-left">Corridas <FaShip className="ml-2" size={24}/></h3>
                 <Link
                   to="/race/new"
                   className="btn btn-outline-secondary btn-sm mt-2 float-right"

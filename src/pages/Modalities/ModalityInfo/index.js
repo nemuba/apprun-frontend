@@ -10,7 +10,7 @@ import MainLayout from '../../../components/MainLayout';
 const ModalityInfo = () => {
 
   const dispatch = useDispatch();
-  const modality = useSelector(state => state.modalities);
+  const modality = useSelector(state => state.modalities[0]);
   const {id} = useParams();
 
   useEffect(()=>{
@@ -28,14 +28,14 @@ const ModalityInfo = () => {
               </Card.Header>
               <Card.Body>
                 <FormGroup>
-                  <FormLabel>Gênero: {modality[0]?.genre}</FormLabel>
+                  <FormLabel>Gênero: {modality?.genre}</FormLabel>
                 </FormGroup>
                 <FormGroup>
-                  <FormLabel>Número de Remos: {`${modality[0]?.oar} remo(s)`}</FormLabel>
+                  <FormLabel>Número de Remos: {`${modality?.oar} remo(s)`}</FormLabel>
                 </FormGroup>
               </Card.Body>
               <Card.Footer>
-                <Link to={`/modality/${modality[0]?.id}/edit`} className="btn btn-success btn-block">
+                <Link to={`/modality/${modality?.id}/edit`} className="btn btn-success btn-block">
                   Editar <FaPen size={16}/>
                 </Link>
               </Card.Footer>
@@ -63,8 +63,8 @@ const ModalityInfo = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    { modality[0]?.races?.length ? (
-                      modality[0].races.map((race,index) => (
+                    { modality?.races?.length ? (
+                      modality.races.map((race,index) => (
                         <tr key={index}>
                           <td>{race.id}</td>
                           <td align="center">{race.local}</td>

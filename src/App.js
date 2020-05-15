@@ -20,6 +20,7 @@ import PlayerInfo from './pages/Players/PlayerInfo';
 import Sponsors from "./pages/Sponsors";
 import SponsorNew from "./pages/Sponsors/SponsorNew";
 import SponsorEdit from "./pages/Sponsors/SponsorEdit";
+import SponsorInfo from './pages/Sponsors/SponsorInfo';
 import Registrations from "./pages/Registrations";
 import RegistrationNew from "./pages/Registrations/RegistrationNew";
 import RegistrationEdit from "./pages/Registrations/RegistrationEdit";
@@ -66,6 +67,7 @@ const App = (props) => {
         <PrivateRoute exact path="/sponsors" component={Sponsors} />
         <PrivateRoute exact path="/sponsor/new" component={SponsorNew} />
         <PrivateRoute exact path="/sponsor/:id/edit" component={SponsorEdit} />
+        <PrivateRoute exact path="/sponsor/:id" component={SponsorInfo} />
         <PrivateRoute exact path="/players" component={Players} />
         <PrivateRoute exact path="/player/new" component={PlayerNew} />
         <PrivateRoute exact path="/player/:id/edit" component={PlayerEdit} />

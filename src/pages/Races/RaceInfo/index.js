@@ -11,7 +11,7 @@ import { fetchRacesAsync } from './../actions';
 const RaceInfo = () =>{
 
   const dispatch = useDispatch();
-  const race = useSelector(state=> state.races);
+  const race = useSelector(state=> state.races[0]);
   const {id} = useParams();
 
   useEffect(()=>{
@@ -21,7 +21,7 @@ const RaceInfo = () =>{
   return(
     <MainLayout>
       <Page loader="bubble-spin" color="#343A40" size={8}>
-        <Row>
+        <Row style={{ marginBottom: '100px' }}>
             <Col sm={12} lg={4} md={4}>
               <Card className="mt-3">
                 <Card.Header className="bg-dark text-white">
@@ -29,23 +29,23 @@ const RaceInfo = () =>{
                 </Card.Header>
                 <Card.Body>
                   <FormGroup>
-                    <FormLabel>Local da corrrida: {race[0]?.local}</FormLabel>
+                    <FormLabel>Local da corrrida: {race?.local}</FormLabel>
                   </FormGroup>
                   <FormGroup>
-                    <FormLabel>Data da Corrida: {race[0]?.date_race}</FormLabel>
+                    <FormLabel>Data da Corrida: {race?.date_race}</FormLabel>
                   </FormGroup>
                 <FormGroup>
-                  <FormLabel>Status da Corrida: {race[0]?.status}</FormLabel>
+                  <FormLabel>Status da Corrida: {race?.status}</FormLabel>
                 </FormGroup>
                 </Card.Body>
                 <Card.Footer>
-                  <Link to={`/race/${race[0]?.id}/edit`} className="btn btn-success btn-block">
+                  <Link to={`/race/${race?.id}/edit`} className="btn btn-success btn-block">
                     Editar <FaPen size={16} />
                   </Link>
                 </Card.Footer>
               </Card>
                 <Row>
-                  <Col className="mt-3" style={{ marginBottom: '100px' }}>
+                  <Col className="mt-3">
                     <Link to="/races" className="btn btn-danger btn-sm mr-2">
                         Voltar
                     </Link>
@@ -71,8 +71,8 @@ const RaceInfo = () =>{
                       </tr>
                     </thead>
                     <tbody>
-                      {race[0]?.modalities?.length ?
-                          race[0]?.modalities.map((modality,index) => (
+                      {race?.modalities?.length ?
+                          race?.modalities.map((modality,index) => (
                           <tr key={index}>
                             <td>{modality.id}</td>
                               <td align="center">{modality.genre}</td>
@@ -114,8 +114,8 @@ const RaceInfo = () =>{
                     </tr>
                   </thead>
                   <tbody>
-                    { race[0]?.sponsors?.length ?
-                          race[0]?.sponsors.map((sponsor, index)=>(
+                    { race?.sponsors?.length ?
+                          race?.sponsors.map((sponsor, index)=>(
                             <tr key={index}>
                               <td>{sponsor.id}</td>
                               <td align="center">{sponsor.name}</td>
