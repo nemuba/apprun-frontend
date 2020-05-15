@@ -8,16 +8,18 @@ import * as Yup from 'yup';
 import { fetchOptionsModalityAsync } from "./../../Modalities/actions";
 import { fetchOptionsRaceAsync } from "./../../Races/actions";
 import { fetchOptionsPlayerAsync } from "./../../Players/actions";
+import { fetchOptionsPositionsAsync } from "./../../Positions/actions";
 import { updateRegistrationAsync, fetchRegistrationsAsync } from "./../actions";
 import Select from "./../../../components/commom/Select";
 import MainLayout from "./../../../components/MainLayout";
 
 const RegistrationEdit = () => {
   const [disabled, setDisabled] = useState(false);
-  const options_modalities = useSelector((state) => state.modalities);
-  const options_players = useSelector((state) => state.players);
-  const options_races = useSelector((state) => state.races);
-  const registration = useSelector(state => state.registrations);
+  const options_modalities = useSelector(state => state.modalities);
+  const options_players = useSelector(state => state.players);
+  const options_races = useSelector(state => state.races);
+  const options_posistions = useSelector(state => state.positions);
+  const registration = useSelector(state => state.registrations[0]);
 
   const dispatch = useDispatch();
   const formRef = useRef();
@@ -28,6 +30,7 @@ const RegistrationEdit = () => {
     dispatch(fetchOptionsRaceAsync());
     dispatch(fetchOptionsModalityAsync());
     dispatch(fetchOptionsPlayerAsync());
+    dispatch(fetchOptionsPositionsAsync());
   }, [dispatch,id]);
 
   const handleSubmit = async (data) => {
@@ -66,12 +69,12 @@ const RegistrationEdit = () => {
 
 
   useEffect(() => {
-    if (registration.length) {
-      let race = { label: registration[0].race.local, value: registration[0].race.id};
-      let modality = { label: `${registration[0].modality.genre} - ${registration[0].modality.oar} remo(s)`, value: registration[0].modality.id};
-      let player = { label: registration[0].player.name, value: registration[0].player.id};
-      formRef.current.setData({race_id: race, modality_id: modality, player_id: player});
-    }
+    let race = { label: registration?.race?.local, value: registration?.race?.id};
+    let modality = { label: `${registration?.modality?.genre} - ${registration?.modality?.oar} remo(s)`, value: registration?.modality?.id};
+    let player = { label: registration?.player?.name, value: registration?.player?.id};
+    let position = { label: registration?.position?.description, value: registration?.position?.id}
+
+    formRef.current.setData({race_id: race, modality_id: modality, player_id: player, position_id: position});
 
   }, [formRef, registration]);
 
@@ -117,6 +120,14 @@ const RegistrationEdit = () => {
                   <Select
                     name="player_id"
                     options={options_players}
+                    placeholder="Selecione"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <FormLabel>Classificação</FormLabel>
+                  <Select
+                    name="position_id"
+                    options={options_posistions}
                     placeholder="Selecione"
                   />
                 </FormGroup>

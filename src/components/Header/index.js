@@ -13,7 +13,9 @@ import {
   FaUsers,
   FaUserTie,
   FaFileAlt,
-  FaShip } from "react-icons/fa";
+  FaShip,
+  FaCog,
+  FaUserCog} from "react-icons/fa";
 import {logout} from '../../store/ducks/Auth';
 import { logout as RemoveToken} from '../../services/auth';
 import { toast } from 'react-toastify';
@@ -53,7 +55,15 @@ const Header = (props) =>{
             >
               Home
             </NavLink>
-          <NavDropdown title="Gerenciar" id="collasible-nav-dropdown">
+          <NavDropdown title={<span> Gerenciar <FaCog size={12}/></span>} id="collasible-nav-dropdown">
+            <NavLink
+              to="/users"
+              className={
+                location.pathname === "/users" ? "dropdown-item active" : "dropdown-item"
+              }
+            >
+              Usuários <FaUserCog className="float-right mt-2" size={12} />
+            </NavLink>
             <NavLink
               to="/races"
               className={

@@ -8,15 +8,17 @@ import * as Yup from 'yup';
 import { fetchOptionsModalityAsync } from "./../../Modalities/actions";
 import { fetchOptionsRaceAsync } from "./../../Races/actions";
 import { fetchOptionsPlayerAsync } from "./../../Players/actions";
+import { fetchOptionsPositionsAsync } from "./../../Positions/actions";
 import { addRegistrationAsync} from "./../actions";
 import Select from "./../../../components/commom/Select";
 import MainLayout from "./../../../components/MainLayout";
 
 const RegistrationNew = () => {
   const [disabled, setDisabled] = useState(false);
-  const options_modalities = useSelector((state) => state.modalities);
-  const options_players = useSelector((state) => state.players);
-  const options_races  = useSelector((state) => state.races);
+  const options_modalities = useSelector(state => state.modalities);
+  const options_players = useSelector(state => state.players);
+  const options_races  = useSelector(state => state.races);
+  const options_positions = useSelector(state => state.positions);
 
   const dispatch = useDispatch();
   const formRef = useRef();
@@ -25,6 +27,7 @@ const RegistrationNew = () => {
     dispatch(fetchOptionsModalityAsync());
     dispatch(fetchOptionsRaceAsync());
     dispatch(fetchOptionsPlayerAsync());
+    dispatch(fetchOptionsPositionsAsync());
   }, [dispatch]);
 
 
@@ -102,6 +105,14 @@ const RegistrationNew = () => {
                   <Select
                     name="player_id"
                     options={options_players}
+                    placeholder="Selecione"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <FormLabel>Classificação</FormLabel>
+                  <Select
+                    name="position_id"
+                    options={options_positions}
                     placeholder="Selecione"
                   />
                 </FormGroup>

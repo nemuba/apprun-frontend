@@ -54,6 +54,7 @@ const Registrations = () => {
                       <td align="center">Corrida</td>
                       <td align="center">Modalidade</td>
                       <td align="center">Participante</td>
+                      <td align="center">Classificação</td>
                       <td align="center">Data da Corrida</td>
                       <td align="center">Data de incrição</td>
                       <td align="center">Opções</td>
@@ -70,14 +71,14 @@ const Registrations = () => {
                       ))
                     ) : (
                       <tr className="font-weight-bold">
-                        <td colSpan="7" align="center">
+                        <td colSpan="8" align="center">
                           Nenhuma Inscrição cadastrada.{" "}
                           <Link to="/registration/new">Cadastrar</Link>
                         </td>
                       </tr>
                     )}
                     <tr className="font-weight-bold">
-                      <td colSpan="7" align="right">
+                      <td colSpan="8" align="right">
                         Total : {registrations.length}
                       </td>
                     </tr>

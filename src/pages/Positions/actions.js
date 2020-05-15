@@ -12,6 +12,15 @@ export const fetchPositionsAsync = (id = 0) =>{
   }
 }
 
+export const fetchOptionsPositionsAsync = () => {
+  return (dispatch) =>{
+    api
+    .get('/get_positions')
+    .then(resp => dispatch(fetch_positions(resp.data)))
+    .catch(()=> toast.warn("Não foi possivel buscar as posições. Contate um administrador"));
+  }
+}
+
 export const deletePositionAsync = (id) => {
   return (dispatch) => {
     const url = `/positions/${id}`;

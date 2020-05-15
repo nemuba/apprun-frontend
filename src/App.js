@@ -30,7 +30,7 @@ import PositionNew from './pages/Positions/PositionNew';
 import PositionEdit from './pages/Positions/PositionEdit';
 import SignIn from "./pages/Auth/SignIn";
 import Todo from './pages/Todo';
-import UserInfo from './pages/UserInfo';
+import UserInfo from './pages/Users/UserInfo';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {

@@ -6,9 +6,9 @@ import {Form} from '@unform/web';
 import {Row, Col, Card, Button, FormGroup, FormLabel} from 'react-bootstrap';
 import {toast} from 'react-toastify';
 import * as Yup from 'yup';
-import Input from './../../components/commom/Input';
-import MainLayout from './../../components/MainLayout';
-import {updateUserAsync} from './actions';
+import Input from '../../../components/commom/Input';
+import MainLayout from '../../../components/MainLayout';
+import {updateUserAsync} from '../actions';
 
 const UserInfo = () => {
 

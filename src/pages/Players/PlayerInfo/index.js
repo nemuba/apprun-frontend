@@ -36,6 +36,9 @@ const PlayerInfo = () => {
                 <FormGroup>
                   <FormLabel>Idade: {player?.age}</FormLabel>
                 </FormGroup>
+                <FormGroup>
+                  <FormLabel>Score: {player?.score} ponto(s)</FormLabel>
+                </FormGroup>
               </Card.Body>
               <Card.Footer>
                 <Link to={`/player/${player?.id}/edit`} className="btn btn-success btn-block">
@@ -63,7 +66,10 @@ const PlayerInfo = () => {
                       <td align="center">Modalidade</td>
                       <td align="center">Data da Prova</td>
                       <td align="center">Data de Inscrição</td>
-                      <td align="center">Visualizar</td>
+                      <td align="center">Classificação</td>
+                      <td align="center">
+                        <FaEye size={16} />
+                      </td>
                     </tr>
                   </thead>
                   <tbody>
@@ -75,6 +81,7 @@ const PlayerInfo = () => {
                           <td align="center">{registration.modality?.genre}</td>
                           <td align="center">{registration.race?.date_race}</td>
                           <td align="center">{registration.date_registration}</td>
+                          <td align="center">{registration.position?.description}</td>
                           <td align="center">
                             <Link to={`/registration/${registration.id}`} className="btn btn-info btn-sm">
                               <FaEye size={16} />

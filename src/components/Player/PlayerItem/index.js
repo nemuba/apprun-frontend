@@ -7,28 +7,29 @@ const PlayerItem = ({player, handleShowModal}) => {
   return (
     <tr>
       <td>{player.id}</td>
-      <td align="center">{player.name}</td>
+      <td>{player.name}</td>
       <td align="center">{player.genre}</td>
       <td align="center">{player.age} anos</td>
+      <td align="center">{player.score} ponto(s)</td>
       <td align="center">
         <Link
           to={`/player/${player.id}`}
           className="btn btn-info btn-sm mr-2"
         >
-          <FaEye size={16} />
+          <FaEye size={12} />
         </Link>
         <Link
           to={`/player/${player.id}/edit`}
           className="btn btn-success btn-sm mr-2"
         >
-          <FaPen size={16}/>
+          <FaPen size={12} />
         </Link>
         <Button
           variant="danger"
           size="sm"
           onClick={() => handleShowModal({ id: player.id , title: 'Excluir Participante?', message:'Tem certeza que deseja excluir?'})}
         >
-          <FaTrash size={16} />
+          <FaTrash size={12} />
         </Button>
       </td>
     </tr>
