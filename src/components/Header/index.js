@@ -14,7 +14,6 @@ import {
   FaUserTie,
   FaFileAlt,
   FaShip,
-  FaCog,
   FaUserCog} from "react-icons/fa";
 import {logout} from '../../store/ducks/Auth';
 import { logout as RemoveToken} from '../../services/auth';
@@ -40,10 +39,10 @@ const Header = (props) =>{
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="/">
+      <NavLink className="navbar-brand" to="/">
         <FaAcquisitionsIncorporated size={32} />
-        ARCA
-      </Navbar.Brand>
+        ARCCA
+      </NavLink>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
@@ -55,7 +54,12 @@ const Header = (props) =>{
             >
               Home
             </NavLink>
-          <NavDropdown title={<span> Gerenciar <FaCog size={12}/></span>} id="collasible-nav-dropdown">
+          <NavDropdown
+            title="Genrenciar"
+            id="collasible-nav-dropdown"
+            className="p-0"
+            style={{width: '300px'}}
+          >
             <NavLink
               to="/users"
               className={
@@ -98,7 +102,7 @@ const Header = (props) =>{
                 location.pathname === "/sponsors" ? "dropdown-item active" : "dropdown-item"
               }
             >
-              Patrocinadores  <FaUserTie className="ml-3" size={12} />
+              Patrocinadores  <FaUserTie className="float-right mt-2" size={12} />
             </NavLink>
             <NavLink
               to="/players"

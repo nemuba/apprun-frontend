@@ -11,6 +11,7 @@ const RegistrationInfo = () =>{
 
   const dispatch = useDispatch();
   const registration = useSelector(state => state.registrations[0]);
+  const current_user = useSelector(state => state.auth.user);
   const {id} = useParams();
 
   useEffect(()=>{
@@ -35,7 +36,10 @@ const RegistrationInfo = () =>{
                 </FormGroup>
               </Card.Body>
               <Card.Footer>
-                <Link to={`/registration/${registration?.id}/edit`} className="btn btn-success btn-block">
+                <Link
+                  to={`/registration/${registration?.id}/edit`}
+                  className={`btn btn-success btn-block ${current_user?.admin ? '' : 'disabled'}`}
+                >
                   Editar <FaPen size={16} />
                 </Link>
               </Card.Footer>

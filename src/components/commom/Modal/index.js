@@ -29,10 +29,10 @@ const ModalConfirmation = ({handleDelete}) => {
       </Modal.Header>
       <Modal.Body>{message}</Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => handleClose()}>
+        <Button variant="danger" onClick={() => handleClose()}>
           Cancelar
         </Button>
-        <Button variant="danger" onClick={() => handleConfirmation()}>
+        <Button variant="success" onClick={() => handleConfirmation()}>
           Confirmar
         </Button>
       </Modal.Footer>

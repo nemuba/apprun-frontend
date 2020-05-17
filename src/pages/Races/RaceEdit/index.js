@@ -103,13 +103,19 @@ const RaceEdit = () => {
               <Form onSubmit={handleSubmit} ref={formRef}>
                 <FormGroup>
                   <FormLabel>Local</FormLabel>
-                  <Input name="local" type="text" className="form-control"/>
+                  <Input
+                    name="local"
+                    type="text"
+                    placeholder="Local da corrida"
+                    className="form-control"
+                  />
                 </FormGroup>
                 <FormGroup>
                   <FormLabel>Data da Corrida</FormLabel>
                   <Input
                     name="date_race"
-                    type="date"
+                    type="text"
+                    placeholder="dia/mês/ano"
                     className="form-control"
                   />
                 </FormGroup>

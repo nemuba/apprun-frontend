@@ -8,7 +8,7 @@ import {toast} from 'react-toastify';
 import * as Yup from 'yup';
 import Input from '../../../components/commom/Input';
 import MainLayout from '../../../components/MainLayout';
-import {updateUserAsync} from '../actions';
+import {updateUserInfoAsync} from '../actions';
 
 const UserInfo = () => {
 
@@ -31,7 +31,7 @@ const UserInfo = () => {
         abortEarly: false,
       });
 
-      dispatch(updateUserAsync(user.id, data));
+      dispatch(updateUserInfoAsync(user.id, data));
       setTimeout(() => {
         setDisabled(false);
       }, 500);

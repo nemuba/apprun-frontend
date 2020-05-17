@@ -28,11 +28,9 @@ const SignIn = (props) => {
         abortEarly: false,
       });
 
-      dispatch(loginAsyn(data));
+      await dispatch(loginAsyn(data));
       reset();
-      setTimeout(() => {
-        setDisabled(false);
-      }, 500);
+      setDisabled(false);
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
@@ -53,7 +51,7 @@ const SignIn = (props) => {
           <Col md={6} sm={12} lg={5}>
             <Card style={{ marginTop: "130px" }} className="shadow-lg rounded">
               <Card.Header className="bg-dark text-white">
-                <h3>AARCA - Login</h3>
+                <h3>AARCCA - Login</h3>
               </Card.Header>
               <Card.Body>
                 <Form onSubmit={handleSubmit} ref={formRef}>

@@ -31,6 +31,9 @@ import PositionEdit from './pages/Positions/PositionEdit';
 import SignIn from "./pages/Auth/SignIn";
 import Todo from './pages/Todo';
 import UserInfo from './pages/Users/UserInfo';
+import UserNew from './pages/Users/UserNew';
+import UserEdit from './pages/Users/UserEdit';
+import Users from './pages/Users';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -79,7 +82,10 @@ const App = (props) => {
         <PrivateRoute exact path="/positions" component={Positions} />
         <PrivateRoute exact path="/position/new" component={PositionNew} />
         <PrivateRoute exact path="/position/:id/edit" component={PositionEdit} />
+        <PrivateRoute exact path="/users" component={Users} />
         <PrivateRoute exact path="/user" component={UserInfo} />
+        <PrivateRoute exact path="/user/new" component={UserNew} />
+        <PrivateRoute exact path="/user/:id/edit" component={UserEdit} />
         <Route exact path="/login" component={SignIn} />
         <Route exact path="/todo" component={Todo} />
         <Route exact path="/" component={Home} />

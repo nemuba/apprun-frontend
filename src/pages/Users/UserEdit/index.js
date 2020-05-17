@@ -1,6 +1,6 @@
-import React, {  useRef, useState } from 'react';
-import {  useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useRef, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import Page from 'react-page-loading';
 import { Form } from '@unform/web';
 import { Row, Col, Card, Button, FormGroup, FormLabel } from 'react-bootstrap';
@@ -9,29 +9,32 @@ import * as Yup from 'yup';
 import Input from '../../../components/commom/Input';
 import Checkbox from '../../../components/commom/Checkbox';
 import MainLayout from '../../../components/MainLayout';
-import { addUserAsync } from '../actions';
+import { updateUserAsync, fetchUserAsync } from '../actions';
 
-const UserNew = () => {
+const UserEdit = () => {
 
-  const formRef = useRef(null);
   const dispatch = useDispatch();
+  const user = useSelector(state => state.users[0]);
   const [disabled, setDisabled] = useState(false);
+  const formRef = useRef(null);
+  const {id} = useParams();
 
-  const handleSubmit = async (data, {reset}) => {
+  useEffect(()=>{
+    dispatch(fetchUserAsync(id));
+  },[dispatch,id]);
+
+  const handleSubmit = async (data, { reset }) => {
     try {
       setDisabled(true);
       const schema = Yup.object().shape({
         email: Yup.string().required("Informe o email"),
-        password: Yup.string().required('Informe a senha'),
-        password_confirmation: Yup.string()
-          .oneOf([Yup.ref('password'), null], 'Repita a senha')
       });
 
       await schema.validate(data, {
         abortEarly: false,
       });
 
-      await dispatch(addUserAsync(data));
+      await dispatch(updateUserAsync(user.id, data));
       reset();
       setDisabled(false);
     } catch (err) {
@@ -57,29 +60,21 @@ const UserNew = () => {
           <Col sm={12} md={8} lg={8}>
             <Card className="mt-3">
               <Card.Header className="bg-dark text-white">
-                <h3>Cadastrar Usuário</h3>
+                <h3>Atualizar Usuário</h3>
               </Card.Header>
               <Card.Body>
                 <Form ref={formRef} onSubmit={handleSubmit}>
                   <FormGroup>
                     <FormLabel>Email</FormLabel>
-                    <Input name="email" type="email" className="form-control" />
+                    <Input name="email" type="email" className="form-control" value={user?.email}/>
                   </FormGroup>
                   <FormGroup>
-                    <FormLabel>Senha</FormLabel>
-                    <Input name="password" type="password" className="form-control" />
-                  </FormGroup>
-                  <FormGroup>
-                    <FormLabel>Repita a senha</FormLabel>
-                    <Input name="password_confirmation" type="password" className="form-control" />
-                  </FormGroup>
-                  <FormGroup>
-                  <FormGroup>
-                    <Checkbox name="admin" type="radio" label="Administrador" />
-                  </FormGroup>
+                    <FormGroup>
+                      <Checkbox name="admin" type="radio" label="Administrador" checked={user?.admin}/>
+                    </FormGroup>
                     <Link to="/users" className="btn btn-danger float-left">Voltar</Link>
                     <Button variant="primary" className="float-right" type="submit" disabled={disabled}>
-                      {disabled ? 'Cadastrando ...' : 'Cadastrar'}
+                      {disabled ? 'Atualizando ...' : 'Atualizar'}
                     </Button>
                   </FormGroup>
                 </Form>
@@ -92,4 +87,4 @@ const UserNew = () => {
   );
 }
 
-export default UserNew;
+export default UserEdit;

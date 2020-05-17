@@ -13,7 +13,7 @@ import registrationReducer from './ducks/Registration';
 import modalReducer from './ducks/ModalConfirmation';
 import positionReducer from './ducks/Position';
 import userReducer from './ducks/User';
-
+import dashReducer from './ducks/Home';
 // rootReducer
 const rootReducer= (history) => combineReducers({
   router: connectRouter(history),
@@ -27,7 +27,8 @@ const rootReducer= (history) => combineReducers({
   players: playerReducer,
   registrations: registrationReducer,
   positions: positionReducer,
-  users: userReducer
+  users: userReducer,
+  dash: dashReducer
 });
 
 export default rootReducer;

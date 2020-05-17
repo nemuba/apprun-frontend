@@ -2,8 +2,12 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import { FaTrash, FaPen, FaEye } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const RegistrationItem = ({registration, handleShowModal}) => {
+
+  const current_user = useSelector(state => state.auth.user);
+
   return (
     <tr>
       <td>{registration.id}</td>
@@ -16,19 +20,20 @@ const RegistrationItem = ({registration, handleShowModal}) => {
       <td align="center">
         <Link
           to={`/registration/${registration.id}`}
-          className="btn btn-info btn-sm mr-2"
+          className="btn btn-link btn-sm mr-2"
         >
           <FaEye size={12} />
         </Link>
         <Link
           to={`/registration/${registration.id}/edit`}
-          className="btn btn-success btn-sm mr-2"
+          className={`btn btn-link btn-sm mr-2 ${current_user?.admin ? '':'disabled'}`}
         >
           <FaPen size={12} />
         </Link>
         <Button
-          variant="danger"
+          variant="link"
           size="sm"
+          disabled={!current_user?.admin}
           onClick={() =>
             handleShowModal({
               id: registration.id,

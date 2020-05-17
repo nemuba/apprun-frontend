@@ -12,6 +12,7 @@ const RaceInfo = () =>{
 
   const dispatch = useDispatch();
   const race = useSelector(state=> state.races[0]);
+  const current_user = useSelector(state => state.auth.user);
   const {id} = useParams();
 
   useEffect(()=>{
@@ -39,7 +40,10 @@ const RaceInfo = () =>{
                 </FormGroup>
                 </Card.Body>
                 <Card.Footer>
-                  <Link to={`/race/${race?.id}/edit`} className="btn btn-success btn-block">
+                  <Link
+                    to={`/race/${race?.id}/edit`}
+                    className={`btn btn-success btn-block ${current_user?.admin ? '' : 'disabled'}`}
+                  >
                     Editar <FaPen size={16} />
                   </Link>
                 </Card.Footer>

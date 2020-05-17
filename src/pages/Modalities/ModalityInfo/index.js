@@ -11,6 +11,7 @@ const ModalityInfo = () => {
 
   const dispatch = useDispatch();
   const modality = useSelector(state => state.modalities[0]);
+  const current_user = useSelector(state => state.auth.user);
   const {id} = useParams();
 
   useEffect(()=>{
@@ -35,7 +36,10 @@ const ModalityInfo = () => {
                 </FormGroup>
               </Card.Body>
               <Card.Footer>
-                <Link to={`/modality/${modality?.id}/edit`} className="btn btn-success btn-block">
+                <Link
+                  to={`/modality/${modality?.id}/edit`}
+                  className={`btn btn-success btn-block ${current_user?.admin ? '' : 'disabled'}`}
+                >
                   Editar <FaPen size={16}/>
                 </Link>
               </Card.Footer>

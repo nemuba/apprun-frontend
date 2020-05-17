@@ -2,8 +2,12 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Button} from 'react-bootstrap';
 import { FaTrash, FaPen, FaEye } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const SponsorItem = ({ sponsor, handleShowModal }) => {
+
+  const current_user = useSelector(state => state.auth.user);
+
   return (
     <tr>
       <td>{sponsor.id}</td>
@@ -12,19 +16,20 @@ const SponsorItem = ({ sponsor, handleShowModal }) => {
       <td align="center">
         <Link
           to={`/sponsor/${sponsor.id}`}
-          className="btn btn-info btn-sm mr-2"
+          className="btn btn-link btn-sm mr-2"
         >
           <FaEye size={16} />
         </Link>
         <Link
           to={`/sponsor/${sponsor.id}/edit`}
-          className="btn btn-success btn-sm mr-2"
+          className={`btn btn-link btn-sm mr-2 ${current_user?.admin ? '':'disabled'}`}
         >
           <FaPen size={16} />
         </Link>
         <Button
-          variant="danger"
+          variant="link"
           size="sm"
+          disabled={!current_user?.admin}
           onClick={() => handleShowModal({
             id: sponsor.id,
             title: 'Excluir Partrocinador?',

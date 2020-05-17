@@ -12,6 +12,7 @@ const SponsorInfo = () =>{
 
   const dispatch = useDispatch();
   const sponsor = useSelector(state => state.sponsors[0]);
+  const current_user = useSelector(state => state.auth.user);
   const {id} = useParams();
 
   useEffect(()=>{
@@ -36,7 +37,10 @@ const SponsorInfo = () =>{
                 </FormGroup>
               </Card.Body>
               <Card.Footer>
-                <Link to={`/sponsor/${sponsor?.id}/edit`} className="btn btn-success btn-block">
+                <Link
+                  to={`/sponsor/${sponsor?.id}/edit`}
+                  className={`btn btn-success btn-block ${current_user?.admin ? '' : 'disabled'}`}
+                >
                   Editar <FaPen size={16}/>
                 </Link>
               </Card.Footer>

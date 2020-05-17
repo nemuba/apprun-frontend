@@ -2,8 +2,12 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import { FaTrash, FaPen, FaEye } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const PlayerItem = ({player, handleShowModal}) => {
+
+  const current_user = useSelector(state=> state.auth.user);
+
   return (
     <tr>
       <td>{player.id}</td>
@@ -14,22 +18,23 @@ const PlayerItem = ({player, handleShowModal}) => {
       <td align="center">
         <Link
           to={`/player/${player.id}`}
-          className="btn btn-info btn-sm mr-2"
+          className="btn btn-link btn-sm mr-2"
         >
-          <FaEye size={12} />
+          <FaEye size={16} />
         </Link>
         <Link
           to={`/player/${player.id}/edit`}
-          className="btn btn-success btn-sm mr-2"
+          className={`btn btn-link btn-sm mr-2 ${current_user?.admin ? '' : 'disabled'}`}
         >
-          <FaPen size={12} />
+          <FaPen size={16} />
         </Link>
         <Button
-          variant="danger"
+          variant="link"
           size="sm"
+          disabled={!current_user?.admin}
           onClick={() => handleShowModal({ id: player.id , title: 'Excluir Participante?', message:'Tem certeza que deseja excluir?'})}
         >
-          <FaTrash size={12} />
+          <FaTrash size={16} />
         </Button>
       </td>
     </tr>
