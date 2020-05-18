@@ -53,7 +53,7 @@ const UserNew = () => {
   return (
     <MainLayout>
       <Page loader="bubble-spin" color="" size={8}>
-        <Row className="justify-content-center">
+        <Row className="justify-content-center" style={{marginBottom:'100px'}}>
           <Col sm={12} md={8} lg={8}>
             <Card className="mt-3">
               <Card.Header className="bg-dark text-white">
