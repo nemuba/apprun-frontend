@@ -14,6 +14,7 @@ import modalReducer from './ducks/ModalConfirmation';
 import positionReducer from './ducks/Position';
 import userReducer from './ducks/User';
 import dashReducer from './ducks/Home';
+
 // rootReducer
 const rootReducer= (history) => combineReducers({
   router: connectRouter(history),

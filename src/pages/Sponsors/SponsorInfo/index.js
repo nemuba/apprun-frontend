@@ -1,11 +1,12 @@
 import React,{useEffect} from 'react';
-import {Row, Col, Card, FormLabel, Table, FormGroup} from 'react-bootstrap';
+import {Row, Col, Card, FormLabel, Table, FormGroup, Button} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import Page from 'react-page-loading';
 import MainLayout from './../../../components/MainLayout';
 import { Link, useParams } from 'react-router-dom';
 import { FaPen, FaEye } from 'react-icons/fa';
 import { fetchSponsorsAsync } from '../actions';
+import { goBack } from 'connected-react-router';
 
 
 const SponsorInfo = () =>{
@@ -19,10 +20,10 @@ const SponsorInfo = () =>{
     dispatch(fetchSponsorsAsync(id));
   },[dispatch,id]);
 
-  return(
+  return (
     <MainLayout>
       <Page loader="bubble-spin" color="#343A40" size={8}>
-        <Row style={{marginBottom:'100px'}}>
+        <Row style={{ marginBottom: "100px" }}>
           <Col sm={12} lg={4} md={4}>
             <Card className="mt-3">
               <Card.Header className="bg-dark text-white">
@@ -39,17 +40,24 @@ const SponsorInfo = () =>{
               <Card.Footer>
                 <Link
                   to={`/sponsor/${sponsor?.id}/edit`}
-                  className={`btn btn-success btn-block ${current_user?.admin ? '' : 'disabled'}`}
+                  className={`btn btn-success btn-block ${
+                    current_user?.admin ? "" : "disabled"
+                  }`}
                 >
-                  Editar <FaPen size={16}/>
+                  Editar <FaPen size={16} />
                 </Link>
               </Card.Footer>
             </Card>
             <Row>
               <Col className="mt-3">
-                <Link to="/sponsors" className="btn btn-danger btn-sm">
+                <Button
+                  variant="danger"
+                  size="sm"
+                  className="float-left mt-2"
+                  onClick={() => dispatch(goBack())}
+                >
                   Voltar
-                </Link>
+                </Button>
               </Col>
             </Row>
           </Col>
@@ -69,24 +77,30 @@ const SponsorInfo = () =>{
                     </tr>
                   </thead>
                   <tbody>
-                    { sponsor?.races?.length ?
+                    {sponsor?.races?.length ? (
                       sponsor.races.map((race, index) => (
                         <tr key={index}>
                           <td>{race.id}</td>
                           <td align="center">{race.local}</td>
                           <td align="center">{race.date_race}</td>
                           <td align="center">
-                            <Link to={`/race/${race.id}`} className="btn btn-info btn-sm">
+                            <Link
+                              to={`/race/${race.id}`}
+                              className="btn btn-info btn-sm"
+                            >
                               <FaEye size={16} />
                             </Link>
                           </td>
                         </tr>
-                      )) : (
-                        <tr>
-                          <td colSpan={4} align="center">Nenhuma corrida <Link to="/race/new">Cadastrar corrida</Link></td>
-                        </tr>
-                      )
-                    }
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={4} align="center">
+                          Nenhuma corrida{" "}
+                          <Link to="/race/new">Cadastrar corrida</Link>
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </Table>
               </Card.Body>
@@ -95,7 +109,7 @@ const SponsorInfo = () =>{
         </Row>
       </Page>
     </MainLayout>
-  )
+  );
 }
 
 export default SponsorInfo;

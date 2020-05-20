@@ -126,7 +126,7 @@ const Header = (props) =>{
         </Nav>
         <Nav>
 
-          <NavDropdown title={user.email} id="collasible-nav-dropdown">
+          <NavDropdown title={user?.email} id="collasible-nav-dropdown">
             <NavLink to="/user" className="dropdown-item">
               Editar <FaPen className="float-right" size={12} />
             </NavLink>

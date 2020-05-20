@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom';
+import {goBack} from 'connected-react-router';
 import Page from 'react-page-loading';
 import {Form} from '@unform/web';
 import {Row, Col, Card, Button, FormGroup, FormLabel} from 'react-bootstrap';
@@ -49,19 +49,21 @@ const UserInfo = () => {
     try{
         setDisabled(true);
         const schema = Yup.object().shape({
-        photo: Yup.mixed().required("Selecione a imgaem"),
+        photo: Yup.mixed().required("Selecione a imagem"),
         email: Yup.string().required("Informe o email"),
         password: Yup.string().required('Informe a senha'),
         password_confirmation: Yup.string()
           .oneOf([Yup.ref('password'), null], 'Repita a senha')
       });
 
-      await schema.validate(data, {
+      let form  = data;
+      form.photo = user.photo.profile.url !== null && data.photo === null ? "" : image_preview;
+      await schema.validate(form, {
         abortEarly: false,
       });
 
       console.log(data);
-      dispatch(updateUserInfoAsync(user.id, {...data, photo: image_preview}));
+      dispatch(updateUserInfoAsync(user.id, {...form}));
       setTimeout(() => {
         setDisabled(false);
       }, 500);
@@ -95,7 +97,10 @@ const UserInfo = () => {
   return (
     <MainLayout>
       <Page loader="bubble-spin" color="" size={8}>
-        <Row className="justify-content-center" style={{marginBottom: '100px'}}>
+        <Row
+          className="justify-content-center"
+          style={{ marginBottom: "100px" }}
+        >
           <Col sm={12} md={8} lg={8}>
             <Card className="mt-3">
               <Card.Header className="bg-dark text-white">
@@ -119,7 +124,7 @@ const UserInfo = () => {
                     </Row>
                   </FormGroup>
                   <FormGroup>
-                  <FormLabel>Imagem do Perfil</FormLabel>
+                    <FormLabel>Imagem do Perfil</FormLabel>
                     <Image
                       name="photo"
                       type="file"
@@ -148,9 +153,13 @@ const UserInfo = () => {
                     />
                   </FormGroup>
                   <FormGroup>
-                    <Link to="/" className="btn btn-danger float-left">
+                    <Button
+                      variant="danger"
+                      className="float-left"
+                      onClick={() => dispatch(goBack())}
+                    >
                       Voltar
-                    </Link>
+                    </Button>
                     <Button
                       variant="primary"
                       className="float-right"
