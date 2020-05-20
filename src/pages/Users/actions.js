@@ -3,7 +3,7 @@ import {toast} from 'react-toastify';
 import {logout} from '../../store/ducks/Auth';
 import { fetch_users, delete_user } from '../../store/ducks/User';
 import { logout as RemoveToken } from '../../services/auth';
-import store from './../../store';
+import {store} from './../../store';
 import { push } from 'connected-react-router';
 
 
