@@ -12,7 +12,7 @@ export const history = createBrowserHistory();
 
 
 const persistConfig = {
-  key: 'root',
+  key: 'auth',
   storage,
   whitelist: ['auth']
 }

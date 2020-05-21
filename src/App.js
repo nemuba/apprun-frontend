@@ -54,7 +54,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-const App = (props) => {
+const App = () => {
   return (
     <>
       <ToastContainer transition={Flip} />
