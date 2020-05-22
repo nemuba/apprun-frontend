@@ -7,6 +7,7 @@ import toastReducer from './ducks/Toast';
 import raceReducer from './ducks/Race';
 import authReducer from './ducks/Auth';
 import modalityReducer from './ducks/Modality';
+import filterModalityReducer from './ducks/Modality/Filters';
 import sponsorReducer from './ducks/Sponsor';
 import playerReducer from './ducks/Player';
 import registrationReducer from './ducks/Registration';
@@ -29,7 +30,8 @@ const rootReducer= (history) => combineReducers({
   registrations: registrationReducer,
   positions: positionReducer,
   users: userReducer,
-  dash: dashReducer
+  dash: dashReducer,
+  filter_modality: filterModalityReducer
 });
 
 export default rootReducer;

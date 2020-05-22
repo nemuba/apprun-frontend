@@ -5,7 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Card, Table } from "react-bootstrap";
 import { FaPlus, FaVenusMars } from "react-icons/fa";
 import {showModalConfirmation} from './../../store/ducks/ModalConfirmation';
-import { fetchModalitiesAsync, deleteModalitiesAsync } from "./actions";
+import {
+  fetchModalitiesAsync,
+  deleteModalitiesAsync,
+  filterModalitiesForGenres,
+  filterModalitiesForOar,
+  filterModalityAsync
+} from "./actions";
 import MainLayout from "../../components/MainLayout";
 import ModalityItem from "../../components/Modality/ModalityItem";
 import ModalConfirmation from './../../components/commom/Modal';
@@ -13,10 +19,17 @@ import ModalConfirmation from './../../components/commom/Modal';
 const Modalities = () => {
   const dispatch = useDispatch();
   const modalities = useSelector((state) => state.modalities);
+  const filterGenre = useSelector((state) => state.filter_modality.filter_genre);
+  const filterOar = useSelector((state) => state.filter_modality.filter_oar);
 
   useEffect(() => {
     dispatch(fetchModalitiesAsync());
   }, [dispatch]);
+
+  useEffect(()=>{
+    dispatch(filterModalityAsync(modalities));
+  },[dispatch, modalities]);
+
 
   const handleDelete = (id) => {
     dispatch(deleteModalitiesAsync(id));
@@ -25,6 +38,23 @@ const Modalities = () => {
   const handleShowModal = (data) =>{
     dispatch(showModalConfirmation(data));
   }
+
+  const handleFilterGenres = (genre) =>{
+    if(genre !== ""){
+      dispatch(filterModalitiesForGenres(genre));
+    }else{
+      dispatch(fetchModalitiesAsync());
+    }
+  }
+
+  const handleFilterOars = (oar) => {
+    if (oar !== "") {
+      dispatch(filterModalitiesForOar(oar));
+    } else {
+      dispatch(fetchModalitiesAsync());
+    }
+  }
+
 
   return (
     <MainLayout>
@@ -47,8 +77,41 @@ const Modalities = () => {
                   <thead>
                     <tr className="font-weight-bold">
                       <td>#</td>
-                      <td align="center">Gênero</td>
-                      <td align="center">Número de remo</td>
+                      <td align="center">
+                        Gênero
+                        <select
+                          className="form-control"
+                          style={{width:'150px'}}
+                          onChange={(e)=> handleFilterGenres(e.target.value)}
+                        >
+                            <option value="">Todos</option>
+                            { filterGenre?.length ? (
+                            filterGenre.map((option, index) => (
+                              <option key={index} value={option}>{option}</option>
+                            ))
+                            ) : (
+                              ''
+                            )}
+                          </select>
+                      </td>
+                      <td align="center">
+                        Número de remo
+                        <select
+                          className="form-control"
+                          style={{ width: '150px' }}
+                          onChange={(e) => handleFilterOars(e.target.value)}
+                        >
+                          <option value="">Todos</option>
+                          {filterOar?.length ? (
+                            filterOar.map((option, index) => (
+                              <option key={index} value={option}>{option}</option>
+                            ))
+                          ) : (
+                              ''
+                            )}
+                        </select>
+
+                      </td>
                       <td align="center">Opções</td>
                     </tr>
                   </thead>
@@ -60,6 +123,7 @@ const Modalities = () => {
                             key={index}
                             modality={modality}
                             handleShowModal={handleShowModal}
+                            filterGenre={handleFilterGenres}
                           />
                         );
                       })

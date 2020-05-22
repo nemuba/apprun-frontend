@@ -1,14 +1,46 @@
 import { fetch_modalities, delete_modality } from "../../store/ducks/Modality";
+import { fetch_filter_genre, fetch_filter_oar } from "../../store/ducks/Modality/Filters";
+
 import api from '../../services/api';
 import {toast} from 'react-toastify';
 
-export const fetchModalitiesAsync = (id = 0 ) =>{
+export const fetchModalitiesAsync = (id = 0) =>{
   return (dispatch) => {
     const url = id !== 0 ? `/modalities/${id}` : '/modalities';
     api
       .get(url)
-      .then((resp) => dispatch(fetch_modalities(id !== 0 ? [resp.data] : resp.data)))
+      .then((resp) =>{
+        dispatch(fetch_modalities(id !== 0 ? [resp.data] : resp.data));
+      })
       .catch((erro) =>{
+        toast.warn(
+          "Não foi possivel buscar as modalidades contate um administrador"
+        );
+      }
+      );
+  }
+}
+export const filterModalitiesForGenres= (genre) =>{
+  return (dispatch) => {
+    const url = `/modalities?filter_genre=${genre}` ;
+    api
+      .get(url)
+      .then((resp) => dispatch(fetch_modalities(resp.data)))
+      .catch((erro) => {
+        toast.warn(
+          "Não foi possivel buscar as modalidades contate um administrador"
+        );
+      }
+      );
+  }
+}
+export const filterModalitiesForOar = (oar) => {
+  return (dispatch) => {
+    const url = `/modalities?filter_oar=${oar}`;
+    api
+      .get(url)
+      .then((resp) => dispatch(fetch_modalities(resp.data)))
+      .catch((erro) => {
         toast.warn(
           "Não foi possivel buscar as modalidades contate um administrador"
         );
@@ -74,5 +106,17 @@ export const deleteModalitiesAsync = (id) => {
           "Não foi possivel buscar as modalidades contate um administrador"
         )
       );
+  };
+};
+
+export const filterModalityAsync = (modalities) => {
+  return (dispatch) => {
+    const genres = modalities.map(m => m.genre);
+    const oars = modalities.map(m => m.oar);
+
+    const unique = (x,i,a) => a.indexOf(x) === i;
+
+    dispatch(fetch_filter_genre(genres.filter(unique)));
+    dispatch(fetch_filter_oar(oars.filter(unique)));
   };
 };

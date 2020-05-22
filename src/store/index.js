@@ -10,11 +10,10 @@ import reducers from './rootReducer';
 
 export const history = createBrowserHistory();
 
-
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['auth']
+  whitelist: ['auth','filter_modality']
 }
 
 const persistedReducer = persistReducer( persistConfig,reducers(history));
