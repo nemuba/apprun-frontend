@@ -33,6 +33,9 @@ const PlayerInfo = () => {
                   <FormLabel>Nome: {player?.name}</FormLabel>
                 </FormGroup>
                 <FormGroup>
+                  <FormLabel>Local: {player?.local}</FormLabel>
+                </FormGroup>
+                <FormGroup>
                   <FormLabel>Modalidade: {player?.genre}</FormLabel>
                 </FormGroup>
                 <FormGroup>
@@ -78,8 +81,8 @@ const PlayerInfo = () => {
                       <td>#</td>
                       <td align="center">Corrida</td>
                       <td align="center">Modalidade</td>
+                      <td align="center">Canoa</td>
                       <td align="center">Data da Prova</td>
-                      <td align="center">Data de Inscrição</td>
                       <td align="center">Classificação</td>
                       <td align="center">
                         <FaEye size={16} />
@@ -93,10 +96,8 @@ const PlayerInfo = () => {
                           <td>{registration.id}</td>
                           <td align="center">{registration.race?.local}</td>
                           <td align="center">{registration.modality?.genre}</td>
+                          <td align="center">{registration.canoe}</td>
                           <td align="center">{registration.race?.date_race}</td>
-                          <td align="center">
-                            {registration.date_registration}
-                          </td>
                           <td align="center">
                             {registration.position?.description}
                           </td>

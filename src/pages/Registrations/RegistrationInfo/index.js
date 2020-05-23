@@ -31,6 +31,11 @@ const RegistrationInfo = () =>{
               <Card.Body>
                 <FormGroup>
                   <FormLabel>
+                    Canoa: {registration?.canoe}
+                  </FormLabel>
+                </FormGroup>
+                <FormGroup>
+                  <FormLabel>
                     Posição: {registration?.position?.description}
                   </FormLabel>
                 </FormGroup>
@@ -127,6 +132,9 @@ const RegistrationInfo = () =>{
                   <Card.Body>
                     <FormGroup>
                       <FormLabel>Nome: {registration?.player?.name}</FormLabel>
+                    </FormGroup>
+                    <FormGroup>
+                      <FormLabel>Local: {registration?.player?.local}</FormLabel>
                     </FormGroup>
                     <FormGroup>
                       <FormLabel>Idade: {registration?.player?.age}</FormLabel>

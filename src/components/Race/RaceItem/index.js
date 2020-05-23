@@ -16,7 +16,7 @@ const RaceItem = ({race, handleShowModal}) => {
       <td align="center">{race.status}</td>
       <td align="center">
         <ul style={{listStyle: 'none'}}>
-        {race.modalities.length
+        {race.modalities?.length
           ? race.modalities
               .map((mod, index) => <li key={index}>{`${mod.genre} - ${mod.oar} remo(s)`}</li>)
           : "Nenhum"}
@@ -24,7 +24,7 @@ const RaceItem = ({race, handleShowModal}) => {
       </td>
       <td align="center">
         <ul style={{listStyle: 'none'}}>
-          {race.sponsors.length
+          {race.sponsors?.length
             ? race.sponsors.map((spo, index) => <li key={index}>{spo.name}</li>)
             : "Nenhum"}
         </ul>
