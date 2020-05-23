@@ -128,7 +128,7 @@ const Header = (props) =>{
 
           <NavDropdown title={user?.email} id="collasible-nav-dropdown">
             <NavLink to="/user" className="dropdown-item">
-              Editar <FaPen className="float-right" size={12} />
+              Editar Perfil <FaPen className="float-right" size={12} />
             </NavLink>
             <Button variant="outline-secondary" onClick={() => handleLogout()} className="dropdown-item">
               Sair <FaSignOutAlt className="float-right" size={12} />

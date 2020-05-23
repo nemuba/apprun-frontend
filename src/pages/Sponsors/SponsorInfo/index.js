@@ -70,10 +70,10 @@ const SponsorInfo = () =>{
                 <Table responsive hover striped>
                   <thead>
                     <tr>
-                      <td>#</td>
-                      <td align="center">Local</td>
-                      <td align="center">Data da corrida</td>
-                      <td align="center">Visualizar</td>
+                      <th>#</th>
+                      <th>Local</th>
+                      <th>Data da corrida</th>
+                      <th>Visualizar</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -81,9 +81,9 @@ const SponsorInfo = () =>{
                       sponsor.races.map((race, index) => (
                         <tr key={index}>
                           <td>{race.id}</td>
-                          <td align="center">{race.local}</td>
-                          <td align="center">{race.date_race}</td>
-                          <td align="center">
+                          <td>{race.local}</td>
+                          <td>{race.date_race}</td>
+                          <td>
                             <Link
                               to={`/race/${race.id}`}
                               className="btn btn-info btn-sm"

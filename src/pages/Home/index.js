@@ -5,6 +5,7 @@ import {Row,Col, Jumbotron, Button, Card} from 'react-bootstrap';
 import MainLayout from '../../components/MainLayout';
 import { FaShip, FaFileAlt, FaUsers, FaEye } from 'react-icons/fa';
 import { fetchDashAsync } from './actions';
+import Page from 'react-page-loading';
 
 const Home = (props) => {
 
@@ -31,13 +32,15 @@ const Home = (props) => {
       <Row className="justify-content-center mt-3" style={{marginBottom:'100px'}}>
         <Col lg={4}>
           <Card className="mb-3">
-            <Card.Body>
-              <h2 className="text-center">
-                Corridas <FaShip size={24}/>
-              </h2>
-              <h4 className="text-center text-info">
-                {dash?.total_race}
-              </h4>
+            <Card.Body style={{height:'125px'}}>
+                <h2 className="text-center">
+                  Corridas <FaShip size={24}/>
+                </h2>
+              <Page loader="spin" color="#343A40" size={3}>
+                <h4 className="text-center text-info">
+                  {dash?.total_race}
+                </h4>
+              </Page>
             </Card.Body>
             <Card.Footer className="text-center bg-info text-white">
               <Button variant="info" onClick={() => dispatch(push('/races'))}>
@@ -47,14 +50,16 @@ const Home = (props) => {
           </Card>
         </Col>
         <Col lg={4}>
-          <Card className="mb-3">
-            <Card.Body>
+          <Card className="mb-3" >
+            <Card.Body style={{ height: '125px' }}>
               <h2 className="text-center">
                 Inscrições <FaFileAlt size={24} />
               </h2>
+              <Page loader="spin" color="#343A40" size={3}>
               <h4 className="text-center text-info">
                 {dash?.total_registrations}
               </h4>
+              </Page>
             </Card.Body>
             <Card.Footer className="text-center bg-info text-white">
               <Button variant="info" onClick={() => dispatch(push('/registrations'))}>
@@ -65,13 +70,15 @@ const Home = (props) => {
         </Col>
         <Col lg={4}>
           <Card className="mb-3">
-            <Card.Body>
+            <Card.Body style={{ height: '125px' }}>
               <h2 className="text-center">
                 Participantes <FaUsers size={24} />
               </h2>
+              <Page loader="spin" color="#343A40" size={3}>
               <h4 className="text-center text-info">
                 {dash?.total_players}
               </h4>
+              </Page>
             </Card.Body>
             <Card.Footer className="text-center bg-info text-white">
               <Button variant="info" onClick={() => dispatch(push('/players'))}>
