@@ -15,7 +15,7 @@ const PlayerEdit = () => {
   const dispatch = useDispatch();
   const formRef = useRef();
   const {id} = useParams();
-  const player = useSelector(state => state.players);
+  const player = useSelector(state => state.players[0]);
 
   const genres = [
     { label: "Masculino", value: "Masculino" },
@@ -29,6 +29,7 @@ const PlayerEdit = () => {
 
       const schema = Yup.object().shape({
         name: Yup.string().required("Informe o nome do participante"),
+        local: Yup.string().required("Informe o local do participante"),
         genre: Yup.string().required("Selecione um Gênero do participante"),
         age: Yup.number().typeError("Informe a idade do participante").required()
       });
@@ -59,8 +60,12 @@ const PlayerEdit = () => {
   },[dispatch,id]);
 
   useEffect(()=>{
-    if(player.length)
-    formRef.current.setData({name: player[0].name, age: player[0].age, genre: {label: player[0].genre, value: player[0].genre}});
+    formRef.current.setData({
+      name: player?.name,
+      local: player?.local,
+      age: player?.age,
+      genre: {label: player?.genre, value: player?.genre}
+    });
   },[player, formRef]);
 
   return (
@@ -75,7 +80,19 @@ const PlayerEdit = () => {
               <Form onSubmit={handleSubmit} ref={formRef}>
                 <FormGroup>
                   <FormLabel>Nome</FormLabel>
-                  <Input name="name" type="text" className="form-control" />
+                  <Input
+                    name="name"
+                    type="text"
+                    placeholder="Nome do Participante"
+                    className="form-control" />
+                </FormGroup>
+                <FormGroup>
+                  <FormLabel>Local</FormLabel>
+                  <Input
+                    name="local"
+                    type="text"
+                    placeholder="Local do Participante"
+                    className="form-control" />
                 </FormGroup>
                 <FormGroup>
                   <FormLabel>Gênero</FormLabel>
@@ -87,7 +104,11 @@ const PlayerEdit = () => {
                 </FormGroup>
                 <FormGroup>
                   <FormLabel>Idade</FormLabel>
-                  <Input name="age" type="number" className="form-control" />
+                  <Input
+                    name="age"
+                    type="number"
+                    placeholder="Idade do Participante"
+                    className="form-control" />
                 </FormGroup>
                 <FormGroup>
                   <Link to="/players" className="btn btn-danger float-left">

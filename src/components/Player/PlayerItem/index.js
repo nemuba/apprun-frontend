@@ -12,6 +12,7 @@ const PlayerItem = ({player, handleShowModal}) => {
     <tr>
       <td>{player.id}</td>
       <td>{player.name}</td>
+      <td align="center">{player.local}</td>
       <td align="center">{player.genre}</td>
       <td align="center">{player.age} anos</td>
       <td align="center">{player.score} ponto(s)</td>

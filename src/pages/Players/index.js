@@ -48,6 +48,7 @@ const Players = () => {
                     <tr className="font-weight-bold">
                       <td>#</td>
                       <td>Nome</td>
+                      <td align="center">Local</td>
                       <td align="center">Gênero</td>
                       <td align="center">Idade</td>
                       <td align="center">Score</td>
@@ -67,14 +68,14 @@ const Players = () => {
                       })
                     ) : (
                       <tr className="font-weight-bold">
-                        <td colSpan="6" align="center">
+                        <td colSpan="7" align="center">
                           Nenhum partipante cadastrado.{" "}
                           <Link to="/player/new">Cadastrar</Link>
                         </td>
                       </tr>
                     )}
                     <tr className="font-weight-bold">
-                      <td colSpan="6" align="right">
+                      <td colSpan="7" align="right">
                         Total: {players.length}
                       </td>
                     </tr>

@@ -11,6 +11,7 @@ import { fetchOptionsPlayerAsync } from "./../../Players/actions";
 import { fetchOptionsPositionsAsync } from "./../../Positions/actions";
 import { addRegistrationAsync} from "./../actions";
 import Select from "./../../../components/commom/Select";
+import Input from "./../../../components/commom/Input";
 import MainLayout from "./../../../components/MainLayout";
 
 const RegistrationNew = () => {
@@ -40,6 +41,7 @@ const RegistrationNew = () => {
         race_id: Yup.number().typeError("Informe a corrida"),
         modality_id: Yup.number().typeError("Informe a Modalidade"),
         player_id: Yup.number().typeError("Informe um Participante"),
+        canoe: Yup.string().required("Informe a Canoa do Participante")
       });
 
       await schema.validate(data, {
@@ -115,6 +117,14 @@ const RegistrationNew = () => {
                     options={options_positions}
                     placeholder="Selecione"
                   />
+                </FormGroup>
+                <FormGroup>
+                  <FormLabel>Canoa</FormLabel>
+                  <Input
+                    name="canoe"
+                    type="text"
+                    placeholder="Nome Canoa do Participante"
+                    className="form-control"/>
                 </FormGroup>
                 <FormGroup>
                   <Link

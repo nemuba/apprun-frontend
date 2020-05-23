@@ -11,6 +11,7 @@ import { fetchOptionsPlayerAsync } from "./../../Players/actions";
 import { fetchOptionsPositionsAsync } from "./../../Positions/actions";
 import { updateRegistrationAsync, fetchRegistrationsAsync } from "./../actions";
 import Select from "./../../../components/commom/Select";
+import Input from "./../../../components/commom/Input";
 import MainLayout from "./../../../components/MainLayout";
 
 const RegistrationEdit = () => {
@@ -42,6 +43,7 @@ const RegistrationEdit = () => {
         race_id: Yup.number().typeError("Informe a corrida"),
         modality_id: Yup.number().typeError("Informe a Modalidade"),
         player_id: Yup.number().typeError("Informe um Participante"),
+        canoe: Yup.string().required("Informe a Canoa do Participante")
       });
 
       await schema.validate(data, {
@@ -74,7 +76,13 @@ const RegistrationEdit = () => {
     let player = { label: registration?.player?.name, value: registration?.player?.id};
     let position = { label: registration?.position?.description, value: registration?.position?.id}
 
-    formRef.current.setData({race_id: race, modality_id: modality, player_id: player, position_id: position});
+    formRef.current.setData({
+      race_id: race,
+      modality_id: modality,
+      player_id: player,
+      position_id: position,
+      canoe: registration?.canoe
+    });
 
   }, [formRef, registration]);
 
@@ -129,6 +137,15 @@ const RegistrationEdit = () => {
                     name="position_id"
                     options={options_posistions}
                     placeholder="Selecione"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <FormLabel>Canoa</FormLabel>
+                  <Input
+                    name="canoe"
+                    type="text"
+                    placeholder="Nome da Canoa do Participante"
+                    className="form-control"
                   />
                 </FormGroup>
                 <FormGroup>

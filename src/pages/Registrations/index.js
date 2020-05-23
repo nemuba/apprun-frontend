@@ -51,12 +51,12 @@ const Registrations = () => {
                   <thead>
                     <tr className="font-weight-bold">
                       <td>#</td>
-                      <td align="center">Corrida</td>
-                      <td align="center">Modalidade</td>
-                      <td align="center">Participante</td>
+                      <td>Corrida</td>
+                      <td>Modalidade</td>
+                      <td>Participante</td>
+                      <td align="center">Canoa</td>
                       <td align="center">Classificação</td>
                       <td align="center">Data da Corrida</td>
-                      <td align="center">Data de incrição</td>
                       <td align="center">Opções</td>
                     </tr>
                   </thead>

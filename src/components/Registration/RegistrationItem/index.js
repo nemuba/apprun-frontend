@@ -11,12 +11,12 @@ const RegistrationItem = ({registration, handleShowModal}) => {
   return (
     <tr>
       <td>{registration.id}</td>
-      <td align="center">{registration.race.local}</td>
-      <td align="center">{`${registration.modality.genre} - ${registration.modality.oar} remo(s)`}</td>
-      <td align="center">{registration.player.name}</td>
+      <td>{registration.race.local}</td>
+      <td>{`${registration.modality.genre} - ${registration.modality.oar} remo(s)`}</td>
+      <td>{registration.player.name}</td>
+      <td align="center">{registration.canoe ? registration.canoe : 'Indef.'}</td>
       <td align="center">{registration.position ? registration.position.description : 'Indef.'}</td>
       <td align="center">{registration.race.date_race}</td>
-      <td align="center">{registration.date_registration}</td>
       <td align="center">
         <Link
           to={`/registration/${registration.id}`}

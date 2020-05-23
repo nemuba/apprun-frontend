@@ -27,6 +27,7 @@ const PlayerNew = () => {
 
       const schema = Yup.object().shape({
         name: Yup.string().required("Informe o nome do participante"),
+        local: Yup.string().required("Informe o local do participante"),
         genre: Yup.string().required("Selecione um Gênero do participante"),
         age: Yup.number().typeError("Informe a idade do participante").required()
       });
@@ -65,7 +66,19 @@ const PlayerNew = () => {
               <Form onSubmit={handleSubmit} ref={formRef}>
                 <FormGroup>
                   <FormLabel>Nome</FormLabel>
-                  <Input name="name" type="text" className="form-control" />
+                  <Input
+                    name="name"
+                    type="text"
+                    placeholder="Nome do Participante"
+                    className="form-control" />
+                </FormGroup>
+                <FormGroup>
+                  <FormLabel>Local</FormLabel>
+                  <Input
+                    name="local"
+                    type="text"
+                    placeholder="Local do Participante"
+                    className="form-control" />
                 </FormGroup>
                 <FormGroup>
                   <FormLabel>Gênero</FormLabel>
@@ -77,7 +90,11 @@ const PlayerNew = () => {
                 </FormGroup>
                 <FormGroup>
                   <FormLabel>Idade</FormLabel>
-                  <Input name="age" type="number" className="form-control" />
+                  <Input
+                    name="age"
+                    type="number"
+                    placeholder="Idade do Participante"
+                    className="form-control" />
                 </FormGroup>
                 <FormGroup>
                   <Link to="/players" className="btn btn-danger float-left">
